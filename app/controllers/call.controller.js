@@ -13,6 +13,7 @@ exports.findAll = (req, res) => {
       model: Answer,
       as: 'answers',
     }],
+    order: [['createdAt', 'DESC']],
     where: {
       user_name: {
         [Op.iLike]: `%${user_name}%`
