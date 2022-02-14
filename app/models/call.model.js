@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize, Answer) => {
       type: Sequelize.TEXT
     },
     quantity: {
-      type: Sequelize.INTEGER
+      type: Sequelize.STRING
     },
     category: {
       type: Sequelize.STRING

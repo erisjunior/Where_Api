@@ -1,14 +1,29 @@
 const db = require('../models');
 const Call = db.calls;
 const Answer = db.answers;
-// const Op = db.Sequelize.Op;
+const Op = db.Sequelize.Op;
 
 exports.findAll = (req, res) => {
+  const user_name = req.query.user_name || '';
+  const user_city = req.query.user_city || '';
+  const user_state = req.query.user_state || '';
+
   Call.findAll({
     include: [{
       model: Answer,
       as: 'answers',
-    }]
+    }],
+    where: {
+      user_name: {
+        [Op.iLike]: `%${user_name}%`
+      },
+      user_city: {
+        [Op.iLike]: `%${user_city}%`
+      },
+      user_state: {
+        [Op.iLike]: `%${user_state}%`
+      },
+    }
   })
     .then(data => {
       res.send(data);
